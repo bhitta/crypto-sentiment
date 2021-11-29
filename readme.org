@@ -5,7 +5,8 @@
 - pip install -r requirements
 
 * binance vision scraper
-- gets spot kline data from https://data.binance.vision/
+- gets spot klines data from https://data.binance.vision/
+
 ** how to use
 #+BEGIN_SRC sh
 python binance-vision-zips-download.py --pair ETHUSDC --interval 12h --output "/path/to/dir"
