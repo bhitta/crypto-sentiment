@@ -11,6 +11,7 @@ from selenium.common import exceptions
 def create_webdriver_instance():
     options = ChromeOptions()
     options.use_chromium = True
+    #options.add_argument("--headless")
     driver = Chrome(options=options)
     return driver
 
@@ -214,6 +215,6 @@ if __name__ == '__main__':
     usr = "sedimentalist"
     pwd = "sediment"
     term = '$link OR chainlink until:2021-11-30'
-    path = f'./data/{term}.csv'
+    path = f'./data/twitter/{term}.csv'
 
     main(usr, pwd, term, path)
