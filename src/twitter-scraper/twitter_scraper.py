@@ -1,5 +1,7 @@
 import csv
 from time import sleep
+from datetime import datetime
+import os
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Chrome, ChromeOptions
@@ -102,7 +104,7 @@ def scroll_down_page(driver, last_position, num_seconds_to_load=0.5, scroll_atte
 
 
 def save_tweet_data_to_csv(records, filepath, mode='a+'):
-    header = ['User', 'Handle', 'PostDate', 'TweetText', 'ReplyCount', 'RetweetCount', 'LikeCount']
+    header = ['User', 'Handle', 'PostDate', 'TweetText', 'Emojis', 'ReplyCount', 'RetweetCount', 'LikeCount']
     with open(filepath, mode=mode, newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         if mode == 'w':
@@ -152,15 +154,14 @@ def extract_data_from_current_tweet_card(card):
         _full_comment = ""
     try:
         emojis = card.find_elements(By.XPATH, './/img')
-        _all_emojis = ''.join([emoji.get_attribute('title') for emoji in emojis])
+        all_emojis = ''.join([emoji.get_attribute('title') for emoji in emojis])
     except exceptions.NoSuchElementException:
-        _all_emojis = ""
+        all_emojis = ""
     try:
         _responding = card.find_element(By.XPATH, './/div[2]/div[2]/div[2]').text
     except exceptions.NoSuchElementException:
         _responding = ""
-    tweet_text = _full_comment + " " + _all_emojis + _responding
-    print(tweet_text)
+    tweet_text = _full_comment + _responding
     try:
         reply_count = card.find_element(By.XPATH, './/div[@data-testid="reply"]').text
     except exceptions.NoSuchElementException:
@@ -173,7 +174,7 @@ def extract_data_from_current_tweet_card(card):
         like_count = card.find_element(By.XPATH, './/div[@data-testid="like"]').text
     except exceptions.NoSuchElementException:
         like_count = ""
-    tweet = (user, handle, postdate, tweet_text, reply_count, retweet_count, like_count)
+    tweet = (user, handle, postdate, tweet_text, all_emojis, reply_count, retweet_count, like_count)
     return tweet
 
 
@@ -214,7 +215,9 @@ def main(username, password, search_term, filepath, page_sort='Latest'):
 if __name__ == '__main__':
     usr = "sedimentalist"
     pwd = "sediment"
-    term = '$link OR chainlink until:2021-11-30'
-    path = f'./data/twitter/{term}.csv'
+    term = '$ETH OR Ethereum until:2021-11-30'
+    path = f'./data/twitter/raw/{term}-raw.csv'
+    if os.path.exists(path):
+        path = path[:-4] + str(datetime.now()) + "-" path[-4:]
 
     main(usr, pwd, term, path)

@@ -7,7 +7,7 @@ import requests, zipfile, io, dryscrape, time, argparse, os, glob
 parser = argparse.ArgumentParser(description="Choose Binance Trading Pair and Candle Interval")
 parser.add_argument('-p', '--pair', required=True, help="Binance Trading Pair")
 parser.add_argument('-i', '--interval', required=True, help="Candle Interval")
-parser.add_argument('-o', '--output', default=f"./data", help="Output Directory")
+parser.add_argument('-o', '--output', default=f"./data/crypto", help="Output Directory")
 args = parser.parse_args()
 
 def download_monthly_csvs(pair, interval, output_dir):
