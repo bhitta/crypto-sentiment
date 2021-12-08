@@ -148,20 +148,20 @@ def extract_data_from_current_tweet_card(card):
     except exceptions.NoSuchElementException:
         return
     try:
-        spans = card.find_elements(By.XPATH, './/span')
-        _full_comment = ''.join([element.text for element in spans])
+        spans = card.find_elements(By.XPATH, './div[2]//span')
+        _full_comment = ' '.join([element.text for element in spans])
     except exceptions.NoSuchElementException:
         _full_comment = ""
     try:
         emojis = card.find_elements(By.XPATH, './/img')
-        all_emojis = ''.join([emoji.get_attribute('title') for emoji in emojis])
+        all_emojis = ' '.join([emoji.get_attribute('title') for emoji in emojis])
     except exceptions.NoSuchElementException:
         all_emojis = ""
     try:
         _responding = card.find_element(By.XPATH, './/div[2]/div[2]/div[2]').text
     except exceptions.NoSuchElementException:
         _responding = ""
-    tweet_text = _full_comment + _responding
+    tweet_text = _full_comment #+ _responding
     try:
         reply_count = card.find_element(By.XPATH, './/div[@data-testid="reply"]').text
     except exceptions.NoSuchElementException:
@@ -218,6 +218,6 @@ if __name__ == '__main__':
     term = '$ETH OR Ethereum until:2021-11-30'
     path = f'./data/twitter/raw/{term}-raw.csv'
     if os.path.exists(path):
-        path = path[:-4] + str(datetime.now()) + "-" path[-4:]
+        path = path[:-4] + "-" + str(datetime.now()) + path[-4:]
 
     main(usr, pwd, term, path)
