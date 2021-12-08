@@ -1,2 +1,5 @@
-data/
+data/twitter/raw/*
+data/twitter/processed/*
+data/crypto/*
+data/misc/*
 venv/

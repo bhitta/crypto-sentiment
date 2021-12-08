@@ -1,9 +1,11 @@
 #+TITLE: Readme
 
 * how to run code
-- python3 -m venv env --upgrade-deps
-- source env/bin/activate
-- pip install -r requirements
+#+BEGIN_SRC sh
+ python3 -m venv env --upgrade-deps
+ source env/bin/activate
+ pip install -r requirements
+#+END_SRC
 
 * binance vision scraper
 - gets spot klines data from https://data.binance.vision/
@@ -25,4 +27,4 @@ python binance-vision-zips-download.py --pair ETHUSDC --interval 12h --output "/
   - 1w
   - ...
 - output:
-  - default: "./data/PAIR-INTERVAL"
+  - default: "./data/twitter/raw/PAIR-INTERVAL"
