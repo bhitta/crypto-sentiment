@@ -1,22 +1,34 @@
 import csv
-from time import sleep
-from datetime import datetime
 import os
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver import Chrome, ChromeOptions
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions
+from datetime import datetime
 from selenium.common import exceptions
+from selenium.webdriver import Chrome, ChromeOptions
+from selenium.webdriver import Firefox, FirefoxOptions
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.ui import WebDriverWait
+from time import sleep
 
-
-def create_webdriver_instance():
+def create_chromium_instance():
     options = ChromeOptions()
     options.use_chromium = True
-    #options.add_argument("--headless")
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1080")
     driver = Chrome(options=options)
-    return driver
 
+def create_firefox_instance():
+    options = FirefoxOptions()
+    #options.use_chromium = True
+    #options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--window-size=1920,1080")
+    driver = Firefox(options=options)
+    return driver
 
 def login_to_twitter(username, password, driver):
     url = 'https://twitter.com/login'
@@ -102,7 +114,6 @@ def scroll_down_page(driver, last_position, num_seconds_to_load=0.5, scroll_atte
     last_position = curr_position
     return last_position, end_of_scroll_region
 
-
 def save_tweet_data_to_csv(records, filepath, mode='a+'):
     header = ['User', 'Handle', 'PostDate', 'TweetText', 'Emojis', 'ReplyCount', 'RetweetCount', 'LikeCount']
     with open(filepath, mode=mode, newline='', encoding='utf-8') as f:
@@ -111,7 +122,6 @@ def save_tweet_data_to_csv(records, filepath, mode='a+'):
             writer.writerow(header)
         if records:
             writer.writerow(records)
-
 
 def collect_all_tweets_from_current_view(driver, lookback_limit=25):
     """The page is continously loaded, so as you scroll down the number of tweets returned by this function will
@@ -124,7 +134,6 @@ def collect_all_tweets_from_current_view(driver, lookback_limit=25):
         return page_cards
     else:
         return page_cards[-lookback_limit:]
-
 
 def extract_data_from_current_tweet_card(card):
     try:
@@ -154,7 +163,7 @@ def extract_data_from_current_tweet_card(card):
         _full_comment = ""
     try:
         emojis = card.find_elements(By.XPATH, './/img')
-        all_emojis = ' '.join([emoji.get_attribute('title') for emoji in emojis])
+        all_emojis = ','.join([emoji.get_attribute('title') for emoji in emojis])
     except exceptions.NoSuchElementException:
         all_emojis = ""
     try:
@@ -177,6 +186,19 @@ def extract_data_from_current_tweet_card(card):
     tweet = (user, handle, postdate, tweet_text, all_emojis, reply_count, retweet_count, like_count)
     return tweet
 
+def delete_cache(driver):
+    driver.execute_script("window.open('');")
+    sleep(2)
+    driver.switch_to.window(driver.window_handles[-1])
+    sleep(2)
+    driver.get('chrome://settings/clearBrowserData') # for old chromedriver versions use cleardriverData
+    sleep(2)
+    actions = ActionChains(driver)
+    actions.send_keys(Keys.TAB * 7 + Keys.ENTER) # send right combination
+    actions.perform()
+    sleep(2)
+    driver.close() # close this tab
+    driver.switch_to.window(driver.window_handles[0]) # switch back
 
 def main(username, password, search_term, filepath, page_sort='Latest'):
     save_tweet_data_to_csv(None, filepath, 'w')  # create file for saving records
@@ -184,7 +206,7 @@ def main(username, password, search_term, filepath, page_sort='Latest'):
     end_of_scroll_region = False
     unique_tweets = set()
 
-    driver = create_webdriver_instance()
+    driver = create_firefox_instance()
     logged_in = login_to_twitter(username, password, driver)
     if not logged_in:
         return
@@ -195,11 +217,16 @@ def main(username, password, search_term, filepath, page_sort='Latest'):
 
     change_page_sort(page_sort, driver)
     sleep(2) # make webdirver wait on the tweets to load
+    scroll_count = 0
     while not end_of_scroll_region:
         cards = collect_all_tweets_from_current_view(driver)
         for card in cards:
             try:
                 tweet = extract_data_from_current_tweet_card(card)
+                try:
+                    print(tweet[3])
+                except:
+                    continue
             except exceptions.StaleElementReferenceException:
                 continue
             if not tweet:
@@ -209,13 +236,17 @@ def main(username, password, search_term, filepath, page_sort='Latest'):
                 unique_tweets.add(tweet_id)
                 save_tweet_data_to_csv(tweet, filepath)
         last_position, end_of_scroll_region = scroll_down_page(driver, last_position)
+        print("Scrolling ...")
+        scroll_count =+ 1
+        if scroll_count % 50 == 0:
+            delete_cache(driver)
+    print("End of scroll region reached.")
     driver.quit()
-
 
 if __name__ == '__main__':
     usr = "sedimentalist"
     pwd = "sediment"
-    term = '$ETH OR Ethereum until:2021-11-30'
+    term = '$AVAX OR Avalanche until:2021-11-30'
     path = f'./data/twitter/raw/{term}-raw.csv'
     if os.path.exists(path):
         path = path[:-4] + "-" + str(datetime.now()) + path[-4:]

@@ -1,0 +1,23 @@
+1640946490764	geckodriver	INFO	Listening on 127.0.0.1:40371
+1640946490776	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "33117" "-no-remote" "-profile" "/tmp/rust_mozprofileBrptCI"
+*** You are running in headless mode.
+1640946491012	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileBrptCI/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:33117/devtools/browser/51214e7c-6ffa-4e8b-bd67-7a265eefd4c8
+1640946491849	Marionette	INFO	Listening on port 44681
+1640946491889	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+1640946512106	geckodriver	INFO	Listening on 127.0.0.1:56977
+1640946512110	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "57621" "-no-remote" "-profile" "/tmp/rust_mozprofilefdWVnL"
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1640946512490	Marionette	INFO	Marionette enabled
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilefdWVnL/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:57621/devtools/browser/8fa9865e-c13c-49ea-821b-c10b3e4eede4
+1640946513482	Marionette	INFO	Listening on port 44453
+1640946513523	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
