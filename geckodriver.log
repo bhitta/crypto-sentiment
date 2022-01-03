@@ -26,3 +26,225 @@ console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkErr
 
 ###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
 
+1641042456670	geckodriver	INFO	Listening on 127.0.0.1:45513
+1641042456674	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "60667" "-no-remote" "-profile" "/tmp/rust_mozprofilectJ2B8"
+*** You are running in headless mode.
+1641042456914	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilectJ2B8/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:60667/devtools/browser/de677e27-1a67-4ca4-b138-9662b45cc152
+1641042457754	Marionette	INFO	Listening on port 44841
+1641042457787	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1641042519448	geckodriver	INFO	Listening on 127.0.0.1:59239
+1641042519452	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "57695" "-no-remote" "-profile" "/tmp/rust_mozprofileTz0yFL"
+*** You are running in headless mode.
+1641042519683	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileTz0yFL/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:57695/devtools/browser/ef0101fa-5e65-4e19-a550-9cd2393f86ef
+1641042520480	Marionette	INFO	Listening on port 44037
+1641042520565	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+1641042642233	geckodriver	INFO	Listening on 127.0.0.1:37875
+1641042642237	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "53025" "-no-remote" "-profile" "/tmp/rust_mozprofileLfShRJ"
+*** You are running in headless mode.
+1641042642466	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileLfShRJ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:53025/devtools/browser/af0b8724-67b6-4c64-b83f-ffd75ad603fe
+1641042643350	Marionette	INFO	Listening on port 35921
+1641042643464	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1641043093234	geckodriver	INFO	Listening on 127.0.0.1:46669
+1641043093237	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "54829" "-no-remote" "-profile" "/tmp/rust_mozprofilerHlkz5"
+*** You are running in headless mode.
+1641043093466	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilerHlkz5/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:54829/devtools/browser/eac32279-2d6e-48b6-b1f3-32d66ce2c89c
+1641043094255	Marionette	INFO	Listening on port 46071
+1641043094352	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1641045906132	geckodriver	INFO	Listening on 127.0.0.1:57931
+1641045906136	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "46021" "-no-remote" "-profile" "/tmp/rust_mozprofilepQah91"
+*** You are running in headless mode.
+1641045906373	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilepQah91/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:46021/devtools/browser/80aead8f-a11f-424b-b360-397722441db7
+1641045907155	Marionette	INFO	Listening on port 35643
+1641045907248	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+1641045989847	geckodriver	INFO	Listening on 127.0.0.1:33489
+1641045989851	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "44641" "-no-remote" "-profile" "/tmp/rust_mozprofile2Buv2k"
+*** You are running in headless mode.
+1641045990082	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile2Buv2k/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:44641/devtools/browser/9698e5c6-7fd3-41ef-8b90-532e84d8c81b
+1641045990936	Marionette	INFO	Listening on port 40035
+1641045990963	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1641046702811	Marionette	INFO	Stopped listening on port 40035
+1641046705138	geckodriver	INFO	Listening on 127.0.0.1:39493
+1641046705140	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "51007" "-no-remote" "-profile" "/tmp/rust_mozprofilen0pqkz"
+*** You are running in headless mode.
+1641046705436	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilen0pqkz/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:51007/devtools/browser/5d79b7b9-2bf3-4307-8a42-f4f011ae2413
+1641046706271	Marionette	INFO	Listening on port 38385
+1641046706353	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1641046939544	Marionette	INFO	Stopped listening on port 38385
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1641046939848	geckodriver	INFO	Listening on 127.0.0.1:37405
+1641046939851	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "50339" "-no-remote" "-profile" "/tmp/rust_mozprofileOiylve"
+*** You are running in headless mode.
+1641046940087	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileOiylve/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:50339/devtools/browser/dcbe46ba-906e-4f1d-93a6-58e8860633b4
+1641046940867	Marionette	INFO	Listening on port 33533
+1641046940986	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1641197134504	geckodriver	INFO	Listening on 127.0.0.1:58503
+1641197135009	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "39557" "-no-remote" "-profile" "/tmp/rust_mozprofilejQw1Ov"
+*** You are running in headless mode.
+1641197135590	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilejQw1Ov/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:39557/devtools/browser/c4fee595-33be-4f31-96bb-a952fe4ba9f6
+1641197136575	Marionette	INFO	Listening on port 33549
+1641197136624	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1641210198703	Marionette	INFO	Stopped listening on port 33549
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1641213409719	geckodriver	INFO	Listening on 127.0.0.1:34039
+1641213410226	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "36975" "-no-remote" "-profile" "/tmp/rust_mozprofile1ruPib"
+*** You are running in headless mode.
+1641213410570	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile1ruPib/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:36975/devtools/browser/1315442a-e2ff-42a6-8c77-56f6e1e41a04
+1641213411434	Marionette	INFO	Listening on port 39101
+1641213411558	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1641213436944	geckodriver	INFO	Listening on 127.0.0.1:52927
+1641213436948	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "47967" "-no-remote" "-profile" "/tmp/rust_mozprofile77EUzv"
+*** You are running in headless mode.
+1641213437177	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile77EUzv/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:47967/devtools/browser/8f81cad3-d86b-479d-b222-dfb664b35b06
+1641213438020	Marionette	INFO	Listening on port 36625
+1641213438061	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1641217261208	Marionette	INFO	Stopped listening on port 36625
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x5B000B,name=PHttpChannel::Msg___delete__) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x6C0025,name=PNecko::Msg_RemoveRequestContext) Channel closing: too late to send/recv, messages will be lost
+
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1641217261767	geckodriver	INFO	Listening on 127.0.0.1:57089
+1641217261773	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "49571" "-no-remote" "-profile" "/tmp/rust_mozprofilecFlFtA"
+*** You are running in headless mode.
+1641217262037	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilecFlFtA/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:49571/devtools/browser/615e1c1a-35b1-43b7-8d55-1797cd732e91
+1641217262840	Marionette	INFO	Listening on port 38279
+1641217262899	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1641217708039	Marionette	INFO	Stopped listening on port 38279
+1641217708474	geckodriver	INFO	Listening on 127.0.0.1:51379
+1641217708476	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "41785" "-no-remote" "-profile" "/tmp/rust_mozprofilejaB2zm"
+*** You are running in headless mode.
+1641217708715	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilejaB2zm/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:41785/devtools/browser/8d96f650-dda1-48ad-8a0c-449bae171fda
+1641217709648	Marionette	INFO	Listening on port 41955
+1641217709699	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1641218666689	Marionette	INFO	Stopped listening on port 41955
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1641218667036	geckodriver	INFO	Listening on 127.0.0.1:42335
+1641218667038	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "59533" "-no-remote" "-profile" "/tmp/rust_mozprofilejMPpAc"
+*** You are running in headless mode.
+1641218667314	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilejMPpAc/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:59533/devtools/browser/9a66b5c0-0b17-43e1-9f0f-cf0d47433792
+1641218668165	Marionette	INFO	Listening on port 39925
+1641218668263	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.
+1641219078752	Marionette	INFO	Stopped listening on port 39925
+
+###!!! [Parent][RunMessage] Error: Channel closing: too late to send/recv, messages will be lost
+
+1641219079060	geckodriver	INFO	Listening on 127.0.0.1:34927
+1641219079062	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--headless" "--no-sandbox" "--disable-dev-shm-usage" "--window-size=1920,1080" "--remote-debugging-port" "47693" "-no-remote" "-profile" "/tmp/rust_mozprofile2eYSBU"
+*** You are running in headless mode.
+1641219079292	Marionette	INFO	Marionette enabled
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile2eYSBU/search.json.mozlz4", (void 0)))
+DevTools listening on ws://localhost:47693/devtools/browser/06538fca-bf05-41cc-84b8-68d3786fca14
+1641219080176	Marionette	INFO	Listening on port 42209
+1641219080290	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://gre/actors/AutoCompleteChild.jsm, line 125: Error: Invalid autocomplete selectedIndex
+console.log: WebExtensions: reset-default-search: starting.
+console.log: WebExtensions: reset-default-search: No addons in our list are installed.

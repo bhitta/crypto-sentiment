@@ -1,4 +1,4 @@
-./geckodriver.log
+*.log
 data/twitter/raw/*
 data/twitter/processed/*
 data/crypto/*
