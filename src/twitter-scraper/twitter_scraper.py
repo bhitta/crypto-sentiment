@@ -1,6 +1,7 @@
 import csv
 import os
 from datetime import datetime
+import pandas as pd
 from selenium.common import exceptions
 from selenium.webdriver import Chrome, ChromeOptions
 from selenium.webdriver import Firefox, FirefoxOptions
@@ -14,16 +15,16 @@ from time import sleep
 def create_chromium_instance():
     options = ChromeOptions()
     options.use_chromium = True
-    options.add_argument("--headless")
+    #options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
     driver = Chrome(options=options)
+    return driver
 
 def create_firefox_instance():
     options = FirefoxOptions()
-    #options.use_chromium = True
-    #options.add_argument("--headless")
+    options.add_argument("--headless")
     options.add_argument("--no-sandbox")
     options.add_argument("--disable-dev-shm-usage")
     options.add_argument("--window-size=1920,1080")
@@ -88,7 +89,7 @@ def find_search_input_and_enter_criteria(search_term, driver):
 
 def change_page_sort(tab_name, driver):
     """Options for this program are `Latest` and `Top`"""
-    tab = driver.find_element_by_link_text(tab_name)
+    tab = driver.find_element(By.LINK_TEXT, tab_name)
     tab.click()
     xpath_tab_state = f'//a[contains(text(),\"{tab_name}\") and @aria-selected=\"true\"]'
 
@@ -200,11 +201,12 @@ def delete_cache(driver):
     driver.close() # close this tab
     driver.switch_to.window(driver.window_handles[0]) # switch back
 
-def main(username, password, search_term, filepath, page_sort='Latest'):
+def main(username, password, search_term, filepath, page_sort='Latest', timestamp="temp02927"):
     save_tweet_data_to_csv(None, filepath, 'w')  # create file for saving records
-    last_position = None
+    last_position        = None
     end_of_scroll_region = False
-    unique_tweets = set()
+    timestamp_reached    = False
+    unique_tweets        = set()
 
     driver = create_firefox_instance()
     logged_in = login_to_twitter(username, password, driver)
@@ -214,19 +216,25 @@ def main(username, password, search_term, filepath, page_sort='Latest'):
     search_found = find_search_input_and_enter_criteria(search_term, driver)
     if not search_found:
         return
-
+    sleep(2) # firefox is slow
     change_page_sort(page_sort, driver)
     sleep(2) # make webdirver wait on the tweets to load
     scroll_count = 0
-    while not end_of_scroll_region:
+    while not end_of_scroll_region or timestamp_reached:
         cards = collect_all_tweets_from_current_view(driver)
         for card in cards:
             try:
                 tweet = extract_data_from_current_tweet_card(card)
                 try:
-                    print(tweet[3])
+                    if tweet[2] == timestamp:
+                        timestamp_reached = True
+                        break
                 except:
                     continue
+#               try:
+#                   print(tweet[2])
+#               except:
+#                   continue
             except exceptions.StaleElementReferenceException:
                 continue
             if not tweet:
@@ -235,8 +243,10 @@ def main(username, password, search_term, filepath, page_sort='Latest'):
             if tweet_id not in unique_tweets:
                 unique_tweets.add(tweet_id)
                 save_tweet_data_to_csv(tweet, filepath)
+            if tweet[2] == timestamp:
+                break
         last_position, end_of_scroll_region = scroll_down_page(driver, last_position)
-        print("Scrolling ...")
+        #print("Scrolling ...")
         scroll_count =+ 1
         if scroll_count % 50 == 0:
             delete_cache(driver)
@@ -246,9 +256,25 @@ def main(username, password, search_term, filepath, page_sort='Latest'):
 if __name__ == '__main__':
     usr = "sedimentalist"
     pwd = "sediment"
-    term = '$AVAX OR Avalanche until:2021-11-30'
-    path = f'./data/twitter/raw/{term}-raw.csv'
-    if os.path.exists(path):
-        path = path[:-4] + "-" + str(datetime.now()) + path[-4:]
+    ticker_tag  = "AVAX"
+    month       = "11"
+    year        = "2021"
 
-    main(usr, pwd, term, path)
+    for day in reversed(range(1,23)):
+        direction = "until"
+        term = f'${ticker_tag} {direction}:{year}-{month}-{day}'
+        print(term)
+        path = f'./data/twitter/raw/{term}-raw.csv'
+        #if os.path.exists(path):
+        #    path = path[:-4] + "-" + str(datetime.now()) + path[-4:]
+
+        # scrape from midnight of the day into the past
+        main(usr, pwd, term, path)
+        timestamp = pd.read_csv(path).iloc[-1:]["PostDate"].tolist()[0]
+        print(timestamp)
+        direction = "since"
+        term = f'${ticker_tag} {direction}:{year}-{month}-{day}'
+        print(term)
+        path = f'./data/twitter/raw/{term}-raw.csv'
+        # scrape from beginning of day until timestamp of reverse crawler or scroll limit is met.
+        main(usr, pwd, term, path, timestamp=timestamp)
