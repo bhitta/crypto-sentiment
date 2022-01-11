@@ -1,4 +1,5 @@
 *.log
+src/twitter-scraper/twitter_authentication.py
 data/twitter/raw/*
 data/twitter/processed/*
 data/crypto/*

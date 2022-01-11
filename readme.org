@@ -28,3 +28,13 @@ python binance-vision-zips-download.py --pair ETHUSDC --interval 12h --output "/
   - ...
 - output:
   - default: "./data/twitter/raw/PAIR-INTERVAL"
+
+* twitter scraper
+
+** how to use (linux)
+- if firefox is used as webdriver, one needs to download geckodriver from https://github.com/mozilla/geckodriver/releases
+- geckodriver needs to be moved to /usr/local/bin
+-
+#+BEGIN_SRC sh
+export PATH=$PATH:/usr/local/bin/geckodriver
+#+END_SRC

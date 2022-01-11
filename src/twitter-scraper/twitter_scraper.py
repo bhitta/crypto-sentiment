@@ -260,7 +260,7 @@ if __name__ == '__main__':
     month       = "11"
     year        = "2021"
 
-    for day in reversed(range(1,23)):
+    for day in reversed(range(1,19)):
         direction = "until"
         term = f'${ticker_tag} {direction}:{year}-{month}-{day}'
         print(term)
@@ -270,11 +270,11 @@ if __name__ == '__main__':
 
         # scrape from midnight of the day into the past
         main(usr, pwd, term, path)
-        timestamp = pd.read_csv(path).iloc[-1:]["PostDate"].tolist()[0]
-        print(timestamp)
-        direction = "since"
-        term = f'${ticker_tag} {direction}:{year}-{month}-{day}'
-        print(term)
-        path = f'./data/twitter/raw/{term}-raw.csv'
-        # scrape from beginning of day until timestamp of reverse crawler or scroll limit is met.
-        main(usr, pwd, term, path, timestamp=timestamp)
+       #timestamp = pd.read_csv(path).iloc[-1:]["PostDate"].tolist()[0]
+       #print(timestamp)
+       #direction = "since"
+       #term = f'${ticker_tag} {direction}:{year}-{month}-{day}'
+       #print(term)
+       #path = f'./data/twitter/raw/{term}-raw.csv'
+       ## scrape from beginning of day until timestamp of reverse crawler or scroll limit is met.
+       #main(usr, pwd, term, path, timestamp=timestamp)
