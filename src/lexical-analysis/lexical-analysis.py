@@ -13,30 +13,19 @@ def frequent_words(crypto_path, vanilla_path, out_path, n_top):
     crypto_count     = dict(collections.Counter(crypto).most_common(n_top))
     crypto_specific = dict(set(crypto_count.items()) - set(vanilla_count.items()))
 
-    #df = pd.DataFrame.from_dict(ftm_specific, orient="index")
-    #df.to_csv(out_path, header=["Word", "Count"])
-    #pd.DataFrame(ftm_specific).T.reset_index().to_csv(out_path, header=False, index=False)
     with open(out_path, 'w+') as csv_file:
         writer = csv.writer(csv_file)
         for key, value in crypto_specific.items():
             writer.writerow([key, value])
 
 
-
 vanilla = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/vanilla/VANILLA_corpus_clean_combined.txt"
-crypto = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/crypto/SOL_corpus_clean.txt"
-out = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/high_frequency_words_SOL.csv"
+sol = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/crypto/SOL_corpus_clean.txt"
+ftm = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/crypto/FTM_corpus_clean.txt"
+atom = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/crypto/ATOM_corpus_clean.txt"
+avax = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/crypto/AVAX_corpus_clean.txt"
+crypto = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/crypto/CRYPTO_corpus_clean.txt"
+freq_out = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/high_frequency_words_SOL.csv"
 
 if __name__ == "__main__":
-    frequent_words(crypto, vanilla, out, 500)
-
-#tfIdfVectorizer = TfidfVectorizer(use_idf=True)
-
-#vectorizer      = tfIdfVectorizer
-#X               = vectorizer.fit_transform(vanilla)
-#feature_names   = vectorizer.get_feature_names_out()
-#feature_names = vectorizer.get_feature_names_out()
-
-#df              = pd.DataFrame(tfidf[0].T.todense(), index=tfIdfVectorizer.get_feature_names(), columns=["TF-IDF"])
-#df_sort         = df.sort_values("TF-IDF", ascending=False)
-#print(df_sort.head(25))
+    frequent_words(crypto, vanilla, freq_out, 500)
