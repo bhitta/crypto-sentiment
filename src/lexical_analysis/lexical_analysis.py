@@ -25,7 +25,7 @@ ftm = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/crypto/FTM_corpus
 atom = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/crypto/ATOM_corpus_clean.txt"
 avax = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/crypto/AVAX_corpus_clean.txt"
 crypto = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/crypto/CRYPTO_corpus_clean.txt"
-freq_out = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/high_frequency_words_SOL.csv"
+freq_out = "/home/kw/projects/crypto-sentiment/data/twitter/high_freq/high_frequency_words_CRYPTO.csv"
 
 if __name__ == "__main__":
     frequent_words(crypto, vanilla, freq_out, 500)

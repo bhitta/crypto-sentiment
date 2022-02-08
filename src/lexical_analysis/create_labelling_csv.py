@@ -41,7 +41,7 @@ if __name__ == "__main__":
     ftm_csv  = "data/twitter/raw/FTM_2021.csv"
     atom_csv = "data/twitter/raw/ATOM_2021.csv"
     sol_csv  = "data/twitter/raw/SOL_2021.csv"
-    sample_csv = "data/twitter/processed/CRYPTO_2021_preprocessed.csv"
+    sample_csv = "data/twitter/processed/crypto/CRYPTO_2021_preprocessed.csv"
 
     #sample_crypto_csv(ftm_csv, avax_csv, atom_csv, sol_csv, sample_csv, n_sample=250000)
     man_label_sample(sample_csv, man_out, 10000)

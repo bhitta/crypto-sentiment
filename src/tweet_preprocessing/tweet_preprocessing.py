@@ -5,6 +5,7 @@ from nltk.corpus import stopwords
 import string
 import itertools
 from datetime import datetime
+import re
 
 #uncomment below if running for the first time
 #nltk.download('stopwords')
@@ -24,7 +25,9 @@ def preprocess_and_add_column(df, cashtag, csv_path):
     # drop unwanted rows, preprocess tweet text and return a new dataframe
     df["text"] = df["text"].str.lower()
     df = df[~df["text"].str.contains('|'.join(spamwords), na=False)]
-    df = df[(df["text"].str.count("#") <= 8) | (df["text"].str.count("$") <= 8) | (df["text"].str.count("@") <= 8)]
+    df = df[df["text"].str.count("#") < 6]
+    df = df[df["text"].str.count("\$") < 6]
+    df = df[df["text"].str.count("@") < 6]
     preprocessed = df['text'].replace(r'http\S+|\$\S+|\#\S+|\@\S+|[0-9.,$&:;?@#><*()%!-]|\n', '', regex=True)
     preprocessed = preprocessed.apply(lambda tweet: twt.tokenize(tweet) if type(tweet) == str else "")
     preprocessed = preprocessed.apply(lambda tweet: [word for word in tweet if word not in (stop)])
@@ -36,10 +39,13 @@ def preprocess_and_add_column(df, cashtag, csv_path):
 
 if __name__ == "__main__":
 
-    cashtag = "VANILLA"
-    csv_path   = f"./data/twitter/raw/{cashtag}_2021_09.csv"
+    cashtag = "CRYPTO"
+    csv_path   = f"./data/twitter/raw/{cashtag}_2021_raw.csv"
     twt        = nltk.tokenize.TweetTokenizer(strip_handles=True, reduce_len=True)
-    spamwords  = ("giveaway", "bot", "crypto", "whitelist") #wie kann ich die liste finessen?
+    spamwords  = ("giveaway", "bot", "crypto", "whitelist", "#lunarcrush", "keys of the house or car",
+                  "altrank", "galaxy score", "scan results", "new market pair", "@deg_ape",
+                  "#solanaairdrop", "chatroom", "signals", "social engagement", "strongest movers",
+                  "top 5 mentions", "@diamond_boots", "choocolatier") #wie kann ich die liste finessen?
     stop       = stopwords.words("english") + list(string.punctuation)
     df         = pd.read_csv(csv_path, encoding="utf-8", on_bad_lines="skip", engine="python")
     #df_test    = pd.read_csv(csv_path).iloc[:20]
