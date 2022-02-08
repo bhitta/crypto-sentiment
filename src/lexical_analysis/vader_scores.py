@@ -5,6 +5,7 @@ import csv
 import pandas as pd
 from datetime import datetime
 import matplotlib.pyplot as plt
+from src.lexical_analysis.sa_eval import sentiment_score
 
 
 def score_dict_from_labels(label_path, freq_path, count_out_path):
@@ -49,6 +50,31 @@ def plot_word_distribution(score_df, cut_off):
     plt.gca().set(title="Vader Score Distribution", ylabel="# of score", xlabel="VADER score")
     plt.savefig("./data/posneg_words_vader.png")
 
+def plot_sentiment_proportions(label_csv, preds):
+    if preds:
+        labels["vanilla_pred"] = labels["text"].apply(lambda x: sentiment_score(x))
+        pos  = len(labels[labels["vanilla_pred"] == 3.0])
+        neg  = len(labels[labels["vanilla_pred"] == 1.0])
+        neu  = len(labels[labels["vanilla_pred"] == 2.0])
+        title = "Predicted Tweets Sentiment Proportions"
+        out = "./data/labelled_sentiment_proportions.png"
+    else:
+        labels = pd.read_csv(label_csv)
+        pos  = len(labels[labels["sentiment"] == 3.0])
+        neg  = len(labels[labels["sentiment"] == 1.0])
+        neu  = len(labels[labels["sentiment"] == 2.0])
+        title = "Labelled Tweets Sentiment Proportions"
+        out = "./data/gold_sentiment_proportions.png"
+
+    total = sum([pos, neg, neu])
+    sizes = [pos/total, neg/total , neu/total]
+    labels = ["Positive", "Negative", "Neutral"]
+    fig1, ax1 = plt.subplots()
+    ax1.pie(sizes,  labels=labels, autopct='%1.1f%%',
+        shadow=True, startangle=90)
+    ax1.axis('equal')
+    plt.gca().set(title=title)
+    plt.savefig(out)
 
 def adjust_vader_lexicon(lexicon_path, score, out_path):
     """
@@ -107,6 +133,7 @@ if __name__ == "__main__":
 
     #score_dict_from_labels(label_path, freq_path, count_out_path)
     score = clean_dict_to_vader_format(clean, NEGATE, BOOSTER_DICT)
-    print(score.to_markdown())
+    #print(score.to_markdown())
     #plot_word_distribution(score, True)
     #adjust_vader_lexicon(vader_van, score, True)
+    plot_sentiment_proportions(label_path, preds=True)
