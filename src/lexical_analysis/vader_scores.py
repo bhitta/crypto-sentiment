@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+import sys
+sys.path.append("/home/kw/projects/crypto-sentiment/")
+
 import ast
 import collections
 import csv
@@ -81,10 +84,16 @@ def adjust_vader_lexicon(lexicon_path, score, out_path):
     takes VADER lexicon and adds/adjusts entries according to score dict file.
     outputs adjusted VADER lexicon.
     """
-    vader_v = pd.read_csv(lexicon_path, skiprows=[5, 1260, 2865, 5908], delim_whitespace=True, header = None)
-    vader_v = vader_v.iloc[:, 0:2]
-    vader_v.columns = ["token", "sentiment"]
-    print(vader_v)
+    vader_v = pd.read_csv(lexicon_path, sep="\t", header = None)
+    vader_v.columns = ["token", "sentiment", "sd", "ratings"]
+    print(vader_v.shape)
+    for (idx, token, count, vader) in score.itertuples():
+        if vader > 0.5 or vader < 0:
+            if token in vader_v["token"].to_list():
+                vader_v.loc[vader_v["token"] == token, "sentiment"] = vader
+            else:
+                vader_v = vader_v.append({"token": token, "sentiment": vader}, ignore_index=True)
+    vader_v.to_csv(out_path, sep="\t", index=False, header=None)
 
 
 vanilla = "/home/kw/projects/crypto-sentiment/data/twitter/corpora/vanilla/VANILLA_corpus_clean_combined.txt"
@@ -94,7 +103,8 @@ if __name__ == "__main__":
     freq_path =  "/home/kw/projects/crypto-sentiment/data/twitter/high_freq/high_frequency_words_CRYPTO.csv"
     count_out_path = f"/home/kw/projects/crypto-sentiment/data/twitter/pos_neg_occurence{datetime.now()}.csv"
     clean = "/home/kw/projects/crypto-sentiment/data/twitter/pos_neg_occurence_cleaned.csv"
-    vader_van =  "/home/kw/projects/crypto-sentiment/data/twitter/vader_lexicon.txt"
+    vader_van =  "/home/kw/projects/crypto-sentiment/data/twitter/lexica/vader_lexicon.txt"
+    vader_out =  "/home/kw/projects/crypto-sentiment/data/twitter/lexica/vader_lexicon_edited.txt"
 
     #TODO import these instead
     NEGATE = \
@@ -135,5 +145,5 @@ if __name__ == "__main__":
     score = clean_dict_to_vader_format(clean, NEGATE, BOOSTER_DICT)
     #print(score.to_markdown())
     #plot_word_distribution(score, True)
-    #adjust_vader_lexicon(vader_van, score, True)
-    plot_sentiment_proportions(label_path, preds=True)
+    adjust_vader_lexicon(vader_van, score, vader_out)
+    #plot_sentiment_proportions(label_path, preds=True)

@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import pandas as pd
 from sklearn.metrics import accuracy_score
+import sys
+
+sys.path.append("/home/kw/projects/crypto-sentiment/")
 from src.vaderSentiment.vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 def sentiment_score(tweet):

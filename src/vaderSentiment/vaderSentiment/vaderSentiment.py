@@ -195,10 +195,10 @@ class SentimentIntensityAnalyzer(object):
     """
     Give a sentiment intensity score to sentences.
     """
-
-    def __init__(self, lexicon_file="vader_lexicon.txt", emoji_lexicon="emoji_utf8_lexicon.txt"):
+    #TODO change mechanics of whether to use vanilla or edited lexicon, input flag
+    def __init__(self, lexicon_file="vader_lexicon_edited.txt", emoji_lexicon="emoji_utf8_lexicon.txt"):
         _this_module_file_path_ = os.path.abspath(getsourcefile(lambda: 0))
-        lexicon_full_filepath = os.path.join(os.path.dirname(_this_module_file_path_), lexicon_file)
+        lexicon_full_filepath = os.path.join("/home/kw/projects/crypto-sentiment/data/twitter/lexica/", lexicon_file)
         with codecs.open(lexicon_full_filepath, encoding='utf-8') as f:
             self.lexicon_full_filepath = f.read()
         self.lexicon = self.make_lex_dict()
