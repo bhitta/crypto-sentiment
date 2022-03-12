@@ -17,6 +17,8 @@ def create_price_pcnt_sent_df(sent_df, candle_df):
     combined_df = sent_df.join(append_df.set_index("open-time"), on="open-time")
     return combined_df
 
+def crosscorr(series_a, series_b, lag=0):
+    return series_a.corr(series_b.shift(lag))
 
 
 if __name__ == "__main__":
@@ -30,4 +32,9 @@ if __name__ == "__main__":
     sent_df = pd.read_csv(sentiment)
 
     combined_df = create_price_pcnt_sent_df(sent_df, candle_df)
-    combined_df.to_csv(f"/home/kw/projects/crypto-sentiment/data/combined/{cashtag}_{interval}_combined.csv")
+    #combined_df.to_csv(f"/home/kw/projects/crypto-sentiment/data/combined/{cashtag}_{interval}_combined.csv")
+
+    series_a = combined_df["tweet-volume"]
+    series_b = combined_df["percent-change"]
+    xcov_daily = [crosscorr(series_a, series_b, lag=(-i)) for i in range(24)]
+    print(xcov_daily)
