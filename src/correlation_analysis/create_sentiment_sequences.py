@@ -29,12 +29,13 @@ def return_mean_sentiment(opn, cls):
     # filter tweets for relevant candle
 
     tweet_set = twitter_df[twitter_df["unix_time"].between(opn, cls)]["text"]
+    tweet_volume = tweet_set.shape[0]
     # run vader on all tweets in tweet
     mean_score = mean([classifier.polarity_scores(tweet)["compound"] for tweet in tweet_set])
     # append (opn,cls,mean_score) to sequence
-    triple = {"open-time": opn, "close-time": cls, "mean_sentiment": mean_score}
-    print(triple)
-    seqproxy.append(triple)
+    quadruple = {"open-time": opn, "close-time": cls, "mean_sentiment": mean_score, "tweet-volume": tweet_volume}
+    print(quadruple)
+    seqproxy.append(quadruple)
 
 
 def return_sentiment_sequence_parallel(candle_df, twitter_df, out_path):
