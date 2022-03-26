@@ -9,6 +9,9 @@ from pathlib import Path
 import os
 
 def scrape(ticker_tag, start_time, end_time, resume=False):
+    """
+    scrapes twitter using tweepy paginator according to query, start and end time.
+    """
     client   = tweepy.Client(bearer_token, wait_on_rate_limit=True)
     filepath = f"./data/twitter/raw/{ticker_tag}_from_{start_time}_to_{end_time}_api.csv"
     if os.path.exists(filepath):
@@ -36,6 +39,9 @@ def scrape(ticker_tag, start_time, end_time, resume=False):
     return tweets
 
 def flatten_to_dict(response):
+    """
+    flattens nested API output format to dictionary.
+    """
     result = []
     user_dict = {}
     # Loop through each response object
@@ -70,6 +76,7 @@ def flatten_to_dict(response):
     df = pd.DataFrame(result)
     return df
 
-ticker_tag = "SOL"
-tweets     = scrape(ticker_tag,  start_time = "2021-01-01T00:00:00Z", end_time =  "2021-12-31T23:59:59Z")
-#df         = flatten_to_dict(tweets)
+if __name__ == "__main__":
+    ticker_tag = "SOL"
+    tweets     = scrape(ticker_tag,  start_time = "2021-01-01T00:00:00Z", end_time =  "2021-12-31T23:59:59Z")
+    #df         = flatten_to_dict(tweets)

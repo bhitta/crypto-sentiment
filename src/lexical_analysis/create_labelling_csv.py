@@ -3,12 +3,18 @@ import pandas as pd
 
 
 def man_label_sample(in_path, out_path, n_sample):
+    """
+    output csv for manual labelling task, randomly sampled from input csv.
+    """
     df = pd.read_csv(in_path)
     df = df.sample(n_sample)
     df = df[["text", "PreprocessedTweetText"]]
     df.to_csv(out_path, index=False)
 
 def sample_crypto_csv(ftm, avax, atom, sol, out, n_sample):
+    """
+    sample from crypto tweet csvs and output combined csv.
+    """
 
     df_avax     = pd.read_csv(avax)
     avax_sample = df_avax.sample(n_sample)

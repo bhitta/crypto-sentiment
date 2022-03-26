@@ -11,6 +11,10 @@ parser.add_argument('-o', '--output', default=f"./data/crypto", help="Output Dir
 args = parser.parse_args()
 
 def download_monthly_csvs(pair, interval, output_dir):
+    """
+    downloads binance csvs according to paid name and candles.
+    saves it to output_dir.
+    """
     new_path = os.path.join(output_dir, f"{pair}-{interval}-raw")
     if not os.path.exists(new_path):
         os.mkdir(new_path)
@@ -32,6 +36,9 @@ def download_monthly_csvs(pair, interval, output_dir):
             print(f"Downloaded {href} to {new_path} !")
 
 def append_csvs(pair, interval, csv_dir):
+    """
+    append downloaded binance csvs
+    """
     head = ["open-time", "open", "high", "low", "close", "volume", "close-time", "quote-asset-volume", "no-trades", "taker-buy-base-asset-volume", "taker-buy-quote-asset-volume", "ignore"]
     new_path = os.path.join(csv_dir, f"{pair}-{interval}-raw")
     all_files = glob.glob(new_path + "/*.csv")
@@ -45,5 +52,6 @@ def append_csvs(pair, interval, csv_dir):
     vertical_stack.to_csv(os.path.join(csv_dir, f"{pair}-{interval}-combined.csv"))
     print("Saving ... Done")
 
-download_monthly_csvs(args.pair, args.interval, output_dir=args.output)
-append_csvs(args.pair, args.interval, csv_dir=args.output)
+if __name__ == "__main__":
+    download_monthly_csvs(args.pair, args.interval, output_dir=args.output)
+    append_csvs(args.pair, args.interval, csv_dir=args.output)

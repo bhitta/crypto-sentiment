@@ -10,8 +10,6 @@ import sys
 sys.path.append("/home/kw/projects/crypto-sentiment/")
 from src.vaderSentiment.vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-# 1: open twitter csv and adjust timestamps
-#
 def add_unix_time_col(twitter_csv, out_path):
     """
     add unix timestamp column to tweet_csvs used for correlative analysis
@@ -39,6 +37,9 @@ def return_mean_sentiment(opn, cls):
 
 
 def return_sentiment_sequence_parallel(candle_df, twitter_df, out_path):
+    """
+    parallelizes the process of calculating the sentiment bins according to candlestick open and close.
+    """
     opns = [opn / 1000 for opn in candle_df["open-time"].to_list()]
     clss = [cls / 1000 for cls in candle_df["close-time"].to_list()]
     #parallelize here
@@ -46,7 +47,7 @@ def return_sentiment_sequence_parallel(candle_df, twitter_df, out_path):
        data = executor.map(return_mean_sentiment, opns, clss)
 
 if __name__ == "__main__":
-    cashtag = "ATOM"
+    cashtag = "SOL"
     candle_interval = "1h"
     classifier = SentimentIntensityAnalyzer()
     seqproxy = mp.Manager().list()

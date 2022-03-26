@@ -37,15 +37,11 @@ def score_dict_from_labels(label_path, freq_path, count_out_path, train_test_spl
         for key, value in fdict.items():
             writer.writerow([key, value])
 
-#def scale_up(x):
-#    #return x*(1 + save_max - x)
-#    return x * (1 + (max_val - x)/max_val)
-
-#def normalize_for_vader(x):
-#    return x  / max_val  * 4
-
-
 def clean_dict_to_vader_format(clean, neg, boost):
+    """
+    takes clean dictionary, calculates the posneg score.
+    distributes vader scores according to posneg score bins.
+    """
     score_df = pd.read_csv(clean, header=None)
     score_df = score_df.dropna()
     score_df.columns = ["token", "count"]
@@ -68,12 +64,18 @@ def clean_dict_to_vader_format(clean, neg, boost):
     return score_df
 
 def plot_word_distribution(score_df, cut_off):
+    """
+    returns histogram plot for distribution of scores.
+    """
     dist = score_df["count"].to_list()
     plt.hist(dist, bins=50)
     plt.gca().set(title="PosNeg Score Distribution", ylabel="# of score", xlabel="PosNeg score")
     plt.savefig("./data/posneg_words_posneg_score.png")
 
 def plot_sentiment_proportions(label_csv, preds):
+    """
+    output piechart of pos, neg, neutr proportions in given csv for report.
+    """
     labels = pd.read_csv(label_csv)
     if preds:
         labels["vanilla_pred"] = labels["text"].apply(lambda x: sentiment_score(x))
