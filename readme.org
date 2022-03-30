@@ -12,7 +12,7 @@
 
 ** how to use
 #+BEGIN_SRC sh
-python binance-vision-zips-download.py --pair ETHUSDC --interval 12h --output "/path/to/dir"
+python3 src/binance_vision_data_scraper/binance-vision-zips-download.py --pair ETHUSDC --interval 12h --output "/path/to/dir"
 #+END_SRC
 
 - pair examples:
@@ -30,11 +30,29 @@ python binance-vision-zips-download.py --pair ETHUSDC --interval 12h --output "/
   - default: "./data/twitter/raw/PAIR-INTERVAL"
 
 * twitter scraper
-
 ** how to use (linux)
-- if firefox is used as webdriver, one needs to download geckodriver from https://github.com/mozilla/geckodriver/releases
-- geckodriver needs to be moved to /usr/local/bin
--
+- acquire API key and save in ./src/twitter_scraper/twitter_authenticaion.py
+- edit query, token_symbol, start / end date in ./src/twitter_scraper/api_wrapper.py
 #+BEGIN_SRC sh
-export PATH=$PATH:/usr/local/bin/geckodriver
+python3 src/twitter_scraper/api_wapper.py
 #+END_SRC
+
+* tweet preprocessing
+** contains utils for:
+- aggregating tweets from csv to tokenized corpus
+- adding preprocessed column to csv
+- joining csv
+
+*  lexical analysis
+** contains utils for
+- sampling csv for labelling/annotation purposes
+- outputting file with frequent crypto words
+- deriving vader scores from word frequencies in labelled data csv
+- editing vader lexicon
+- creating various plots for project report
+- evaluating VADER classifier accuracy, plotting confusion matrix
+
+* correlation analysis
+** contains utils for
+- creating csvs which temporally combine market and twitter data, averaging VADER scores for timeframes according to market candlesticks
+- calculate crosscorrelation with time-lags, + plots
